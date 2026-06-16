@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["FocusShieldModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.focusshield.FocusShieldModule"]
+  }
+}
