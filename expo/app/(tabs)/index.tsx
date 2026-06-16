@@ -9,6 +9,7 @@ import {
   Platform,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 import {
   Flame,
   Zap,
@@ -33,6 +34,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const {
     progress,
     level,
@@ -67,7 +69,7 @@ export default function HomeScreen() {
   }, [activeUnitLessons, progress.completedLessons]);
 
   const handleLessonPress = (lesson: ChessLesson) => {
-    // Will be handled by navigation
+    router.push(`/lesson/${lesson.id}` as const);
   };
 
   return (
@@ -155,7 +157,13 @@ export default function HomeScreen() {
 
         {/* Next Lesson Card */}
         {nextLesson && (
-          <Pressable style={styles.nextLessonCard}>
+          <Pressable
+            style={({ pressed }) => [
+              styles.nextLessonCard,
+              pressed && styles.nextLessonCardPressed,
+            ]}
+            onPress={handleLessonPress.bind(null, nextLesson)}
+          >
             <View style={styles.nextLessonGlow} />
             <View style={styles.nextLessonContent}>
               <View>
@@ -339,6 +347,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     overflow: "hidden",
     position: "relative",
+  },
+  nextLessonCardPressed: {
+    transform: [{ scale: 0.97 }],
+    opacity: 0.9,
   },
   nextLessonGlow: {
     position: "absolute",
