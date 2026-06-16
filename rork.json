@@ -1,0 +1,15 @@
+{
+  "$schema": "https://rork.com/schema/rork.json",
+  "apps": [
+    {
+      "name": "ChessQuest",
+      "path": "expo",
+      "framework": "react-native"
+    },
+    {
+      "name": "ChessQuest Shield",
+      "path": "ios",
+      "framework": "swift"
+    }
+  ]
+}
