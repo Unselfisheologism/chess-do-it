@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--
+    Shown on the system Settings → Accessibility screen, in the
+    service list. Kept short and descriptive of the user-facing
+    benefit, not the mechanism. Google Play review looks at this.
+  -->
+  <string name="focus_shield_accessibility_summary">Focus Shield for ChessQuest</string>
+  <string name="focus_shield_accessibility_description">Bounces you into a chess puzzle when you open a blocked app, so you can earn a temporary unlock by solving it.</string>
+</resources>

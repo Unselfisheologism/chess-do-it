@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Configuration for FocusShieldService (AccessibilityService).
+  Referenced from the <service> declaration in the main app manifest
+  via android:resource="@xml/focus_shield_accessibility".
+
+  Why these flags:
+    - eventTypes: just TYPE_WINDOW_STATE_CHANGED. We only care about
+      "the user switched to a different app", so we don't need the
+      other event types (touch, gesture, etc). Keeping the event set
+      minimal reduces system overhead and signals intent to the user
+      on the accessibility settings screen.
+    - packageNames: not specified, so we receive events from all
+      apps. The blocked set is checked at runtime in the service
+      itself, against SharedPreferences.
+    - feedbackType: FEEDBACK_GENERIC. We don't speak or play sounds
+      when enforcing the shield.
+    - notificationTimeout: 100ms. Reduces event spam when the user
+      switches between apps quickly.
+    - flags: none of the dangerous ones (canRetrieveWindowContent,
+      canTakeScreenshot, etc). We only need window-state events.
+-->
+<accessibility-service
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeWindowStateChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags=""
+    android:canRetrieveWindowContent="false"
+    android:description="@string/focus_shield_accessibility_description"
+    android:notificationTimeout="100"
+    android:summary="@string/focus_shield_accessibility_summary"
+    android:settingsActivity="" />
